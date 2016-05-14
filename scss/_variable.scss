@@ -2,6 +2,7 @@
 
 $c-editor-content-namespace: '#{map-get($namespace, component)}editor-content' !default;
 
+$c-editor-content-table-zebra-striping: true !default;
 /*---
 title:   Variable
 name:    component_editor_content_variable
@@ -11,5 +12,6 @@ order:   2
 
 ```css
 $c-editor-content-namespace: '#{$c-editor-content-namespace}';
+$c-editor-content-table-zebra-striping: #{$c-editor-content-table-zebra-striping};
 ```
 */

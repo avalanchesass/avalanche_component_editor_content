@@ -1,54 +1,95 @@
-@import 'avalanchesass_component_hn/variable';
-@import 'avalanchesass_component_hn/mixin';
 @import 'avalanchesass_component_editor_content/style_guide';
 @import 'avalanchesass_component_editor_content/variable';
 
-/* extract component.css */
-/* extract component_editor_content.css */
-/*---
-title:   Example
-name:    component_editor_content_example
-section: component_editor_content
-order:   1
----
+@if variable-exists(c-hn-namespace) or variable-exists(c-table-namespace) {
+  /* extract component.css */
+  /* extract component_editor_content.css */
+  /*---
+  title:   Example
+  name:    component_editor_content_example
+  section: component_editor_content
+  order:   1
+  ---
+  */
+  @if variable-exists(c-hn-namespace) and length($c-hn-n) >= 1 {
+    /*---
+    title:   hN
+    name:    component_editor_content_example_hn
+    section: component_editor_content_example
+    order:   1
+    ---
 
-Style HTML output of editors (mostly user generated content).
-
-```example:html
+    ```example:html
 <div class="#{$c-editor-content-namespace}">
   <h1>Headline 1</h1>
-  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</p>
-  <p>sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</p>
   <h2>Headline 2</h2>
-  <ul>
-    <li>Lorem Ipsum dolor</li>
-    <li>Lorem Ipsum dolor</li>
-    <li>Lorem Ipsum dolor</li>
-  </ul>
   <h3>Headline 3</h3>
-  <ol>
-    <li>Lorem Ipsum dolor</li>
-    <li>Lorem Ipsum dolor</li>
-    <li>Lorem Ipsum dolor</li>
-  </ol>
   <h4>Headline 4</h4>
-  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</p>
   <h5>Headline 5</h5>
-  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</p>
   <h6>Headline 6</h6>
-  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</p>
 </div>
-```
-*/
-.#{$c-editor-content-namespace} {
-  @if length($c-hn-n) >= 1 {
-    @each $-n-data in $c-hn-n {
-      $-n: nth($-n-data, 1);
-      h#{$-n} {
-        @include c-h($-n);
+    ```
+    */
+    .#{$c-editor-content-namespace} {
+      @each $-n-data in $c-hn-n {
+        $-n: nth($-n-data, 1);
+        h#{$-n} {
+          @include c-h($-n);
+        }
       }
     }
   }
+
+  @if variable-exists(c-table-namespace) {
+    /*---
+    title:   Table
+    name:    component_editor_content_example_table
+    section: component_editor_content_example
+    order:   1
+    ---
+
+    ```example:html
+<div class="#{$c-editor-content-namespace}">
+  <table>
+    <thead>
+      <tr>
+        <th>Column 1</th>
+        <th>Column 1</th>
+        <th>Column 1</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Lorem</td>
+        <td>Ipsum</td>
+        <td>Dolor</td>
+      </tr>
+      <tr>
+        <td>Lorem</td>
+        <td>Ipsum</td>
+        <td>Dolor</td>
+      </tr>
+      <tr>
+        <td>Lorem</td>
+        <td>Ipsum</td>
+        <td>Dolor</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+    ```
+    */
+    .#{$c-editor-content-namespace} {
+      table {
+        @include c-table($c-table-column-padding, $c-table-column-border);
+      }
+      @if variable-exists(c-zebra-striping-namespace) and $c-editor-content-table-zebra-striping {
+        tbody {
+          @include c-zebra-striping($c-zebra-striping-color);
+        }
+      }
+    }
+  }
+  /* end extract component_editor_content.css */
+  /* end extract component.css */
 }
-/* end extract component_editor_content.css */
-/* end extract component.css */
