@@ -83,6 +83,11 @@
       table {
         @include c-table($c-table-column-padding, $c-table-column-border);
       }
+      @if variable-exists(c-zebra-striping-namespace) and $c-editor-content-table-zebra-striping {
+        tbody {
+          @include c-zebra-striping($c-zebra-striping-color);
+        }
+      }
     }
   }
   /* end extract component_editor_content.css */
