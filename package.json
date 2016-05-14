@@ -10,9 +10,6 @@
   "author": "Markus Oberlehner",
   "homepage": "https://github.com/avalanchesass/avalanche_component_editor_content",
   "license": "GPL v2",
-  "dependencies": {
-    "avalanchesass_component_hn": "^3.0.0"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/avalanchesass/avalanche_component_editor_content"
